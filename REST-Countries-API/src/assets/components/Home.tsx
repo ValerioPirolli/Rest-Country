@@ -1,3 +1,16 @@
+import { useEffect } from "react";
+import { flagsDataStore } from "../stores/flagsDataStore";
+
 export const Home = () => {
-  return <div>home component</div>;
+  const { setAllStates, allStates } = flagsDataStore();
+  useEffect(() => {
+    setAllStates();
+  }, [setAllStates]);
+  return (
+    <div>
+      {allStates.map((step) => (
+        <h1>name: {step.name}</h1>
+      ))}
+    </div>
+  );
 };
