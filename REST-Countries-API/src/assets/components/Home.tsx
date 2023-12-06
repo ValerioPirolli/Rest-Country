@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { flagsDataStore } from "../stores/flagsDataStore";
+import { Flag } from "./flag";
+import { TState } from "../models/TState";
 
 export const Home = () => {
   const { setAllStates, allStates } = flagsDataStore();
@@ -7,9 +9,9 @@ export const Home = () => {
     setAllStates();
   }, [setAllStates]);
   return (
-    <div>
-      {allStates.map((step) => (
-        <h1>name: {step.name}</h1>
+    <div className="w-3/4 mx-auto flex flex-col gap-9">
+      {allStates.map((state: TState) => (
+        <Flag {...state} />
       ))}
     </div>
   );
