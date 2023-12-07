@@ -5,7 +5,7 @@ type TFlagsDataStore = {
   allStates: TState[];
   oneState: TState;
   setAllStates: () => void;
-  getOneState: (name: string) => void;
+  setOneState: (name: string) => void;
 };
 
 export const flagsDataStore = create<TFlagsDataStore>((set) => ({
@@ -19,17 +19,15 @@ export const flagsDataStore = create<TFlagsDataStore>((set) => ({
       }
 
       const data = await response.json();
-      console.log(data);
       set({ allStates: data });
     } catch (error) {
       console.error("Error fetching all states:", error);
     }
   },
-  getOneState: (name) => {
-    set({
-      oneState: flagsDataStore
-        .getState()
-        .allStates.find((st) => st.name === name),
-    });
+  setOneState: (name) => {
+    set((state) => ({
+      oneState:
+        state.allStates.find((st) => st.name === name) || ({} as TState),
+    }));
   },
 }));
