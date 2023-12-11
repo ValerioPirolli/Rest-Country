@@ -4,25 +4,21 @@ import { flagsDataStore } from "../stores/flagsDataStore";
 
 export const FlagDetails = () => {
   const { name } = useParams<{ name: string }>();
-  const { setOneState, oneState } = flagsDataStore();
+  const { setOneState, oneState, allStates, setAllStates } = flagsDataStore();
   useEffect(() => {
-    console.log("ciao");
+    if (!allStates) {
+      setAllStates();
+    }
     if (name) {
       setOneState(name);
     }
-  }, [name, setOneState]);
+  }, [name, setOneState, allStates, setAllStates]);
 
   const state = oneState;
   return (
     <div className="p-7">
       {state.name}
       {state.population}
-      {state.languages.map((st) => (
-        <p>{st.name}</p>
-      ))}
-      {state.currencies.map((st) => (
-        <p>{st.name}</p>
-      ))}
     </div>
   );
 };

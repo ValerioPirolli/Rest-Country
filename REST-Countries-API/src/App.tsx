@@ -13,7 +13,10 @@ function App() {
 
   return (
     <>
-      <div>Ciao</div>
+      <div className="flex justify-between p-6 bg-white mb-5 shadow-md">
+        <p>Where in the world</p>
+        <p>Dark Mode</p>
+      </div>
       <Router>
         <Routes>
           <Route element={<Home />} />
