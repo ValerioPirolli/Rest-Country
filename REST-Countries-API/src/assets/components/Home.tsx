@@ -56,7 +56,7 @@ export const Home = () => {
             <Link
               key={state.name}
               to={`/${state.name}`}
-              className="w-full sm:w-1/4 p-4-"
+              className="w-full sm:w-1/4 p-4"
             >
               <Flag {...state} />
             </Link>
