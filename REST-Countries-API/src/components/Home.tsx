@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { flagsDataStore } from "../stores/flagsDataStore";
 import { Flag } from "./Flag";
-import { TState } from "../models/TState";
 import { useState } from "react";
+import { stateData } from "../models/stateData";
 
 export const Home = () => {
-  const { allStates } = flagsDataStore();
+  const { dataAllFlags: allStates } = flagsDataStore();
   const [selected, setSelected] = useState("");
   const [searchText, setSearchText] = useState("");
 
@@ -45,17 +45,17 @@ export const Home = () => {
 
       <div className="mx-auto flex flex-wrap sm:flex-row">
         {allStates
-          .filter((state: TState) => {
+          .filter((state: stateData) => {
             const regionMatch = selected === "" || state.region === selected;
-            const searchMatch = state.name
+            const searchMatch = state.name.common
               .toLowerCase()
               .includes(searchText.toLowerCase());
             return regionMatch && searchMatch;
           })
-          .map((state: TState) => (
+          .map((state: stateData) => (
             <Link
-              key={state.name}
-              to={`/${state.name}`}
+              key={state.name.common}
+              to={`/${state.name.official}`}
               className="w-full sm:w-1/4 p-4"
             >
               <Flag {...state} />

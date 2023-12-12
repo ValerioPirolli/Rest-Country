@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./assets/components/Home";
-import { FlagDetails } from "./assets/components/FlagDetails";
-import { flagsDataStore } from "./assets/stores/flagsDataStore";
+import { Home } from "./components/Home";
+import { FlagDetails } from "./components/FlagDetails";
+import { flagsDataStore } from "./stores/flagsDataStore";
 import { useEffect } from "react";
 
 function App() {
@@ -19,9 +19,8 @@ function App() {
       </div>
       <Router>
         <Routes>
-          <Route element={<Home />} />
           <Route path="/" element={<Home />} />
-          <Route path="/:name" element={<FlagDetails></FlagDetails>} />
+          <Route path="/:name" element={<FlagDetails />} />
         </Routes>
       </Router>
     </>
